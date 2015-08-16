@@ -1,0 +1,15 @@
+gems:
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - LICENSE
+  - Makefile
+  - README.md
+  - Rakefile
+  - node_modules
+  - package.json
+  - sources
+  - vendor
+  - webpack.config.coffee
+  - webpack.config.js
