@@ -1,0 +1,11 @@
+# Ruby
+.bundle/
+vendor/
+Gemfile.lock
+
+# jekyll
+_site/
+
+# node.js
+npm-debug.log
+node_modules/
