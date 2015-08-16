@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "npm ru webpack -- --debug --devtool inline-source-map --watch",
+    "min": "npm ru webpack -- --optimize-minimize",
+    "webpack": "webpack --colors --display-error-details --progress"
+  },
+  "dependencies": {
+    "flux": "^2.0.3",
+    "keymirror": "^0.1.1",
+    "lodash.assign": "^3.2.0",
+    "lodash.uniqueid": "^3.0.0",
+    "radium": "^0.13.7",
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.22",
+    "babel-loader": "^5.3.2",
+    "coffee-script": "^1.9.3",
+    "json-loader": "^0.5.2",
+    "uglify-save-license": "^0.4.1",
+    "webpack": "^1.11.0",
+    "yaml-loader": "^0.1.0"
+  }
+}
