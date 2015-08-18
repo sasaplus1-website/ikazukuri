@@ -16,31 +16,31 @@
   size: 60
   x: 400
   y: 420
-  color: '#A300B1'
+  color: '#0099FF'
   style: fill
 
-- text: わかばシューターたのしい！
+- text: ((ナイス！))
   size: 80
   x: 300
   y: 280
   color: rgba(0, 255, 127, 0.7)
   style: fill
 
-- text: .96ガロンデコつよい...
+- text: ((カモン！))
   size: 80
   x: 20
   y: 600
   color: rgba(127, 25, 255, 0.5)
   style: fill
 
-- text: スプラチャージャーワカメなかなかオツ
+- text: じゃらじゃらじゃらじゃら〜...ばん！
   size: 40
   x: 600
   y: 530
   color: rgb(255, 90, 25)
   style: fill
 
-- text: マンメンミ　きょうもきょうとて　マンメンミ
+- text: マンメンミ！
   size: 50
   x: 60
   y: 850
