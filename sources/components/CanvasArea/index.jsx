@@ -165,7 +165,7 @@ class CanvasArea extends React.Component {
           <button style={style.button} onClick={this.onClickBackgroundChange.bind(this)}>バックをへんこう...</button>
           <button style={style.button} onClick={this.onClickSaveWithHalfSize.bind(this)}>ほぞん(640-480)</button>
           <button style={style.button} onClick={this.onClickSaveWithFullSize.bind(this)}>ほぞん(1280-960)</button>
-          <input style={style.input} ref="input" type="file" onChange={this.onChangeFile.bind(this)} />
+          <input style={style.input} ref="input" type="file" accept="image/*" onChange={this.onChangeFile.bind(this)} />
         </div>
       </section>
     );
