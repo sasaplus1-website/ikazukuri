@@ -149,7 +149,9 @@ class CanvasArea extends React.Component {
   onChangeFile(event) {
     log('CanvasArea#onChangeFile', event);
 
-    CanvasAction.uploadFile(event.target.files[0]);
+    if (event.target.files.length > 0) {
+      CanvasAction.uploadFile(event.target.files[0]);
+    }
   }
 
   //----------------------------------------------------------------------------
