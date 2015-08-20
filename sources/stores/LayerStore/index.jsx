@@ -49,12 +49,18 @@ class LayerStore extends EventEmitter {
   addLayer() {
     log('LayerStore#addLayer');
 
-    let id = parseInt(uniqueId(), 10);
+    let id = parseInt(uniqueId(), 10),
+        index = Math.floor(Math.random() * this.presets.length),
+        preset = this.presets[index];
 
     this.layers.push(assign({
       id,
       order: id,
-    }, this.presets[Math.floor(Math.random() * this.presets.length)]));
+      size: Math.floor(Math.random() * 80) + 20,
+      x: Math.floor(Math.random() * 800) + 40,
+      y: Math.floor(Math.random() * 850) + 20,
+      style: 'fill',
+    }, preset));
   }
 
   removeLayer(layer) {

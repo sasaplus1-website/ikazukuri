@@ -7,6 +7,8 @@ import HeaderArea from '../HeaderArea';
 import LayersArea from '../LayersArea';
 import SocialArea from '../SocialArea';
 
+import AppAction from '../../actions/AppAction';
+
 import LayerStore from '../../stores/LayerStore';
 
 import style from './style';
@@ -24,6 +26,20 @@ class App extends React.Component {
     log('App#onBeforeUnload');
   }
 
+  onDrop = (event) => {
+    log('App#onDrop');
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    AppAction.dropFiles(event.dataTransfer.files);
+  }
+
+  cancelEvent = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   updateLayer = () => {
     log('App#updateLayer');
 
@@ -36,11 +52,17 @@ class App extends React.Component {
 
   componentDidMount() {
     window.addEventListener('beforeunload', this.onBeforeUnload, false);
+    window.addEventListener('dragenter', this.cancelEvent, false);
+    window.addEventListener('dragover', this.cancelEvent, false);
+    window.addEventListener('drop', this.onDrop, false);
     LayerStore.addUpdateLayerListener(this.updateLayer);
   }
 
   componentWillUnmount() {
     window.removeEventListener('beforeunload', this.onBeforeUnload, false);
+    window.removeEventListener('dragenter', this.cancelEvent, false);
+    window.removeEventListener('dragover', this.cancelEvent, false);
+    window.removeEventListener('drop', this.onDrop, false);
     LayerStore.removeUpdateLayerListener(this.updateLayer);
   }
 

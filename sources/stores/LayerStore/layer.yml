@@ -1,48 +1,20 @@
 - text: イカ、よろしくーーー！
-  size: 80
-  x: 40
-  y: 20
   color: '#A300B1'
-  style: fill
 
 - text: イカ、よろしく～～～
-  size: 80
-  x: 680
-  y: 20
   color: '#69B000'
-  style: fill
 
 - text: かくにんされたしーッ！
-  size: 60
-  x: 400
-  y: 420
-  color: '#A300B1'
-  style: fill
+  color: '#0099FF'
 
-- text: わかばシューターたのしい！
-  size: 80
-  x: 300
-  y: 280
+- text: ((ナイス！))
   color: rgba(0, 255, 127, 0.7)
-  style: fill
 
-- text: .96ガロンデコつよい...
-  size: 80
-  x: 20
-  y: 600
+- text: ((カモン！))
   color: rgba(127, 25, 255, 0.5)
-  style: fill
 
-- text: スプラチャージャーワカメなかなかオツ
-  size: 40
-  x: 600
-  y: 530
+- text: じゃらじゃらじゃらじゃら～...ばん！
   color: rgb(255, 90, 25)
-  style: fill
 
-- text: マンメンミ　きょうもきょうとて　マンメンミ
-  size: 50
-  x: 60
-  y: 850
+- text: イカダッシュ---
   color: rgb(127, 127, 255)
-  style: fill
