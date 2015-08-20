@@ -7,6 +7,7 @@ import exif from 'exif-js';
 
 import dispatcher from '../../dispatcher';
 
+import { ActionTypes as AppActionTypes } from '../../constants/AppConstants';
 import { ActionTypes as CanvasActionTypes } from '../../constants/CanvasConstants';
 
 let events = keymirror({
@@ -25,6 +26,17 @@ class CanvasStore extends EventEmitter {
     let dataUrl;
 
     switch (action.type) {
+      case AppActionTypes.APP_DROP_FILES:
+        log(AppActionTypes.APP_DROP_FILES);
+        this.updateBackground(action.files[0])
+          .then(
+            () => this.emitUpdateBackground()
+          )
+          .catch(
+            (err) => log(err)
+          );
+        break;
+
       case CanvasActionTypes.CANVAS_SAVE_HALF_SIZE:
         log(CanvasActionTypes.CANVAS_SAVE_HALF_SIZE);
         dataUrl = this.saveHalfSize(
@@ -32,6 +44,7 @@ class CanvasStore extends EventEmitter {
         );
         this.emitSaveCanvas(dataUrl);
         break;
+
       case CanvasActionTypes.CANVAS_SAVE_FULL_SIZE:
         log(CanvasActionTypes.CANVAS_SAVE_FULL_SIZE);
         dataUrl = this.saveFullSize(
@@ -39,20 +52,12 @@ class CanvasStore extends EventEmitter {
         );
         this.emitSaveCanvas(dataUrl);
         break;
+
       case CanvasActionTypes.CANVAS_UPLOAD_FILE:
         log(CanvasActionTypes.CANVAS_UPLOAD_FILE);
-        Promise
-          .all([
-            this.loadImage(action.file),
-            this.getExifTag(action.file),
-          ])
+        this.updateBackground(action.file)
           .then(
-            (results) => {
-              let [image, exif] = results;
-
-              this.background = this.fixImageOrientation(image, exif.Orientation);
-              this.emitUpdateBackground();
-            }
+            () => this.emitUpdateBackground()
           )
           .catch(
             (err) => log(err)
@@ -63,12 +68,36 @@ class CanvasStore extends EventEmitter {
 
   //----------------------------------------------------------------------------
 
+  updateBackground(file) {
+    return Promise
+      .all([
+        this.loadImage(file),
+        this.getExifTag(file),
+      ])
+      .then(
+        (results) => {
+          let [image, exif] = results;
+
+          this.background = this.fixImageOrientation(image, exif.Orientation);
+        }
+      );
+  }
+
   loadImage(file) {
     log('CanvasStore#loadImage', file);
 
     return new Promise(function(resolve, reject) {
       let url = URL.createObjectURL(file),
           image = new Image();
+
+      if (!/^image\//.test(file.type)) {
+        URL.revokeObjectURL(url);
+        image = null;
+
+        reject(new TypeError('file type is must be an image.'));
+
+        return;
+      }
 
       image.onerror = function(err) {
         URL.revokeObjectURL(url);
