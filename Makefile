@@ -9,3 +9,4 @@ all:
 	git show master:index.html              > index.html
 	git show master:index.js                > index.js
 	git show master:index.scss              > index.scss
+	git show master:ogp.png                 > ogp.png
